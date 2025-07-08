@@ -38,7 +38,7 @@ structured-codeagents/
 1.  **Clone the repository (or create the files manually):**
 
     ```bash
-    git clone <your-repo-url>
+    git clone https://github.com/volodymyrshk/structured-codeagents
     cd structured-codeagents
     ```
 
