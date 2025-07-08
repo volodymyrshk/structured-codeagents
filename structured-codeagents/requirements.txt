@@ -1,0 +1,4 @@
+openai
+sympy
+python-dotenv
+pydantic-settings
