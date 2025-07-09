@@ -7,22 +7,25 @@ class ReasoningAgent:
 
     def reason(self, task: str) -> str:
         logging.info(f"ReasoningAgent: Received task: {task}")
-        prompt = f"""You are an AI assistant that generates Python code to solve mathematical problems. 
-        The user will provide a task, and you should output only the Python code that solves it. 
-        Do not include any explanations or extra text, just the code. 
-        Make sure the code is executable and prints the result.
-        
+        prompt = f"""You are an AI assistant that uses tools to solve mathematical problems.
+        Based on the user's task, you should select a tool and provide the necessary arguments in JSON format.
+
+        Available tools:
+        - calculate_derivative(expression_str: str, variable_str: str)
+        - calculate_integral(expression_str: str, variable_str: str)
+        - solve_equation(equation_str: str, variable_str: str)
+
         Example:
-        Task: What is the derivative of x^2?
-        Code: 
-from sympy import symbols, diff
-x = symbols('x')
-expr = x**2
-derivative = diff(expr, x)
-print(derivative)
+        Task: What is the derivative of x^2 with respect to x?
+        {{
+            "tool": "calculate_derivative",
+            "args": {{
+                "expression_str": "x**2",
+                "variable_str": "x"
+            }}
+        }}
 
         Task: {task}
-        Code:
         """
         
         logging.info("ReasoningAgent: Sending request to OpenAI API...")
